@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class Background extends ParallaxComponent<MyGame> {
 
   @override
   Future<void> onLoad() async {
-    final image = await gameRef.loadParallaxImage(
+    final image = await game.loadParallaxImage(
       _imageName,
       repeat: ImageRepeat.repeat,
       alignment: Alignment.center,
@@ -41,7 +41,7 @@ class Racer extends SpriteComponent {
   }
 }
 
-class MyGame extends FlameGame with HasDraggableComponents {
+class MyGame extends FlameGame with DragCallbacks {
   final _background = Background();
   final _racer = Racer();
 
